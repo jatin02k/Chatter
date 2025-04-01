@@ -10,16 +10,19 @@ import { authStore } from "./store/authStore";
 import { useEffect } from "react";
 import { Loader } from "lucide-react";
 import { Toaster } from "react-hot-toast";
+import { themeStore } from "./store/themeStore";
 
 function App() {
-  const { authUser, checkAuth, ischeckingAuth } = authStore(); //this custom hook is used to get var from state to global
+  const { authUser, checkAuth, isCheckingAuth } = authStore(); //this custom hook is used to get var from state to global
+  const {theme}= themeStore();
+
   useEffect(() => {
     checkAuth();
   }, [checkAuth]);
 
-  console.log({ authUser });
+  // console.log({ authUser });
 
-  if (ischeckingAuth && !authUser)
+  if (isCheckingAuth && !authUser)
     return (
       <div className="flex items-center justify-center h-screen">
         <Loader className="size-10, animate-spin" />
@@ -28,7 +31,7 @@ function App() {
 
   return (
     <>
-      <div>
+      <div  className="min-h-screen bg-base-100" data-theme={theme}>
         <Navbar />
         <Routes>
           <Route

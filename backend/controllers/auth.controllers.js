@@ -76,7 +76,7 @@ export const updateProfile= async(req,res,next)=>{
     if (!profilePic) return res.status(400).josn({message:"No profile available"});
 
     const uploadResponse= await cloudinary.uploader.upload(profilePic);
-    const updatedUser= await User.findByIdAndUpdate(
+    const updatedUser= await userModel.findByIdAndUpdate(
       userId,
       {profilePic: uploadResponse.secure_url},
       {new:true}
