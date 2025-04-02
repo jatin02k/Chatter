@@ -4,7 +4,7 @@ import Message from "../models/message.model.js";
 export const getUsers = async (req, res) => {
   try {
     const loggedInUserID = req.user._id;
-    const filteredId = await userModel.find({ _id: { ne: loggedInUserID } }).select(
+    const filteredId = await userModel.find({ _id: { $ne: loggedInUserID } }).select(
       "-password"
     );
 

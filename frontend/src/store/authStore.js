@@ -11,6 +11,7 @@ export const authStore = create((set)=>({//create is zustand inbuilt function
     isSigningUp:false,
     isUpdatingProfile:false,
     isCheckingAuth:true,
+    onlineUsers: [],
 
     checkAuth: async () => {
         try {

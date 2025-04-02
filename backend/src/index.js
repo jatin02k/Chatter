@@ -24,7 +24,7 @@ app.use(express.json({ limit: "10mb" })); // Increase limit for JSON requests
 
 
 app.use('/api/auth',authRoutes);
-app.use('/api/message',messageRoutes);
+app.use('/api/messages',messageRoutes);
 
 app.listen(PORT,()=>{
     console.log('The server is live on PORT:'+ PORT);

@@ -72,8 +72,9 @@ export const logout = (req, res) => {
 export const updateProfile= async(req,res,next)=>{
   try {
     const {profilePic}= req.body;
-    const userId= req.user._id;
-    if (!profilePic) return res.status(400).josn({message:"No profile available"});
+    const userId= req.user?._id;
+    if (!userId) return res.status(401).json({ message: "Unauthorized" });
+    if (!profilePic) {return res.status(400).json({message:"No profile available"});}
 
     const uploadResponse= await cloudinary.uploader.upload(profilePic);
     const updatedUser= await userModel.findByIdAndUpdate(
