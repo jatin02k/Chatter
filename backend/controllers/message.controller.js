@@ -1,14 +1,16 @@
 import userModel from "../models/user.model.js";
 import Message from "../models/message.model.js";
+import cloudinary from '../lib/cloudinary.js'
+
 //to show user contact on sidebar
 export const getUsers = async (req, res) => {
   try {
     const loggedInUserID = req.user._id;
-    const filteredId = await userModel.find({ _id: { $ne: loggedInUserID } }).select(
+    const filteredUsers = await userModel.find({ _id: { $ne: loggedInUserID } }).select(
       "-password"
     );
 
-    res.status(200).json(filteredId);
+    res.status(200).json(filteredUsers);
   } catch (error) {
     console.log("Error in getting user:", error.message);
     res.status(500).json({ message: "Internal Server Error" });
@@ -25,7 +27,7 @@ export const getMessages = async (req, res) => {
       ],
     });
 
-    res.status(200).json(filteredId);
+    res.status(200).json(messages);
   } catch (error) {
     console.log("Error in getting user:", error.message);
     res.status(500).json({ message: "Internal Server Error" });
