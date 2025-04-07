@@ -13,6 +13,10 @@ function MessageInput() {
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
+    if (!file) {
+      toast.error("No file selected");
+      return;
+    }
     if (!file.type.startsWith("image/")) {
       toast.error("Please select an image file");
       return;

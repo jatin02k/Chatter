@@ -1,6 +1,6 @@
 import express from 'express'
-import {signup,login,logout,updateProfile, checkAuth} from '../controllers/auth.controllers.js'// putting .js is necessay as i used import method instead of require and ''type is module'' in package.json file 
-import {isLoggedIn} from '../middlewares/isLoggedIn.js'
+import { signup,login,logout,updateProfile, checkAuth } from '../controllers/auth.controllers.js'// putting .js is necessay as i used import method instead of require and ''type is module'' in package.json file 
+import { isLoggedIn } from '../middlewares/isLoggedIn.js'
 
 const router= express.Router();
 

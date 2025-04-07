@@ -1,6 +1,7 @@
 import userModel from "../models/user.model.js";
 import Message from "../models/message.model.js";
 import cloudinary from '../lib/cloudinary.js'
+import { getReceiverSocketId, io } from "../lib/socket.js";
 
 //to show user contact on sidebar
 export const getUsers = async (req, res) => {
@@ -52,7 +53,11 @@ export const sendMessages = async (req, res) => {
     });
     await newMessage.save();
 
-    //todo: realtime message code goes here --- socket.io
+    //todo: realtime message code goes here --- socket.io --- now completed
+    const recieverSocketId = getReceiverSocketId(recieverId);
+    if(recieverSocketId){
+      io.to(recieverSocketId).emit("newMessage",newMessage)
+    }
 
     res.status(201).json(newMessage);
   } catch (error) {

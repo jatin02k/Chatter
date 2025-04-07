@@ -42,7 +42,7 @@ function Sidebar() {
             ({onlineUsers?.length - 1} online)
           </span>
         </div>
-      </div>
+      </div> 
 
       <div className="overflow-y-auto w-full py-3">
         {filteredUsers.map((user) => (

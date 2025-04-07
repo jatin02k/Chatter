@@ -13,7 +13,7 @@ import { Toaster } from "react-hot-toast";
 import { themeStore } from "./store/themeStore";
 
 function App() {
-  const { authUser, checkAuth, isCheckingAuth } = authStore(); //this custom hook is used to get var from state to global
+  const { authUser, checkAuth, isCheckingAuth, onlineUsers } = authStore(); //this custom hook is used to get var from state to global
   const {theme}= themeStore();
 
   useEffect(() => {
